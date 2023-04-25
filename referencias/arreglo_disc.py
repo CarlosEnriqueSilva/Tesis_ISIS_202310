@@ -42,9 +42,7 @@ class Arreglo():
             -
 
         '''
-        print('Metodo arreglo')
         self.estructura.insert(0, infoNodo)
-        print(self.estructura)
 
     def deleteNode_byValue(self, infoNodo):
         '''
@@ -78,7 +76,10 @@ class Arreglo():
             Lista (python) con todos los valores de los nodos, en el orden del primero al ultimo
 
         '''
-        return self.estructura
+        lst = []
+        for i in self.estructura:
+            lst.append(i)
+        return lst
 
     def isNodeValue(self, infoNodo):
         '''
@@ -97,12 +98,11 @@ class Arreglo():
 
         return False
 
-        def findAdjacentNode(nodo):
-            adjLeft = -1
-            adjRight = -1
-            for i in range(0, len(self.estructura)):
-                if self.estructura[i] == nodo:
-                    adjLeft = i - 1
-                    adjRight = i + 1
-
-            return (adjLeft, adjRight)
+    def findAdjacentNode(self, nodo):
+        adjLeft = -1
+        adjRight = -1
+        for i in range(0, len(self.estructura)):
+            if self.estructura[i] == nodo:
+                adjLeft = i - 1
+                adjRight = i + 1
+        return (adjLeft, adjRight)
