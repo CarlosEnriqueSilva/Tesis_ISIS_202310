@@ -73,6 +73,7 @@ class listaEnlazada():
         for i in range(len(items)):
             if defaultfunction(items[i], infoNodo) == 0:
                 pos = i
+                break
         if pos != -1:
             pos = pos + 1
         else:
