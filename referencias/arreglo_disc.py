@@ -97,12 +97,27 @@ class Arreglo():
                 return True
 
         return False
+    
+    def findAdjacentNode(self, infoNodo):
+        '''
+        Devuelve los valores de los nodos que son adyacentes a un nodo dado.
+        
+        Args:
+            infoNodo: Información del nodo del que se buscan los adyacentes
+        
+        Returns:
+            Lista (python) con los valores de los nodos adyacentes al nodo dado. Si no tiene adyacentes se retorna una lista vacia
+            
+        '''
+        lst = list()
 
-    def findAdjacentNode(self, nodo):
-        adjLeft = -1
-        adjRight = -1
-        for i in range(0, len(self.estructura)):
-            if self.estructura[i] == nodo:
-                adjLeft = i - 1
-                adjRight = i + 1
-        return (adjLeft, adjRight)
+        for i in range(len(self.estructura)):
+            if self.estructura[i] == infoNodo:
+                if i != 0:
+                    lst.append(self.estructura[i-1])
+                if i != len(self.estructura)-1:
+                    lst.append(self.estructura[i+1])
+                break
+        return lst
+
+ 
