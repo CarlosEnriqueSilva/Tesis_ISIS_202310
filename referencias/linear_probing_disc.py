@@ -20,6 +20,7 @@ class LinearProbing():
         self.cantLlaves = 0
         self.keys = [None] * size
         self.values = [None] * size
+        self.type = 6
 
     def hash_function(self, key):
         return abs(hash(key)) % self.size
@@ -38,8 +39,6 @@ class LinearProbing():
         '''
         self.cantLlaves = self.cantLlaves + 1
         self.factor = self.cantLlaves / self.size
-
-        
 
         index = self.hash_function(key)
         count = 0

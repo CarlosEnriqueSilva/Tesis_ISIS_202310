@@ -15,6 +15,7 @@ class Arreglo():
 
         '''
         self.estructura = []
+        self.type = 5
 
     def addNode_byValue(self, infoNodo):
         '''
