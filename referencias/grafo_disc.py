@@ -11,26 +11,30 @@ from DISClib.Algorithms.Graphs import prim
 from DISClib.Algorithms.Graphs import scc
 from DISClib.Algorithms.Graphs import dijsktra as djk
 from DISClib.ADT import queue as q
+import networkx as nx
+
 
 class grafo:
     '''
     Clase que representa una Grafo
-    
+
     Por facilidad del uso de esta clase en el Proyecto, todos los valores de los nodos se
     tomarán como Strings. Pero se puede poder user la implementación con cualquier tipo
     de dato 
-    
+
     '''
+
     def __init__(self, type='Undirected'):
         '''
         Inicializacion del grafo. Crea una grafo vacio del tipo especificado
-        
+
         Args:
             type: Directed o Undirected
         Returns:
             -
-            
+
         '''
+        self.type = type
         if type == 'Directed':
             self.estructura = g.newGraph(size=10, directed=True)
         else:
@@ -40,13 +44,13 @@ class grafo:
         '''
         Añade un nodo al grafo dado su valor, el nodo se añade al grafo.
         Si el nodo ya existe no se añade
-        
+
         Args:
             infoNodo: Información del nodo para añadir a la lista
-        
+
         Returns:
             -
-            
+
         '''
         infoNodo = str(infoNodo)
         if not g.containsVertex(self.estructura, infoNodo):
@@ -56,28 +60,29 @@ class grafo:
         '''
         Añade un arco al grafo dado valor del nodo origen, nodo destino y peso.
         El arco se añade al grafo.
-                
+
         Args:
             infoNodo_1: Información del nodo origen
             infoNodo_2: Información del nodo destino
-        
+
         Returns:
             -
-        
+
         Raises:
             Exception si alguno de los nodos no pertenece al grafo
         '''
         infoNodo_1 = str(infoNodo_1)
         infoNodo_2 = str(infoNodo_2)
-        self.estructura = g.addEdge(self.estructura, infoNodo_1, infoNodo_2, weight)
+        self.estructura = g.addEdge(
+            self.estructura, infoNodo_1, infoNodo_2, weight)
 
     def deleteNode_byValue(self, infoNodo):
         '''
         Elimina un nodo del grafo dado valor.
-                
+
         Args:
             infoNodo: Información del nodo que se va a eliminar
-        
+
         Returns:
             -
 
@@ -88,10 +93,10 @@ class grafo:
     def getEdgeValues(self):
         '''
         Devuelve los valores de todos los arcos del grafo
-                
+
         Args:
             -
-        
+
         Returns:
             Lista (python) de tuplas de la forma (nodo_origen, nodo_destino, peso)
 
@@ -100,37 +105,39 @@ class grafo:
         iter = lt.iterator(g.edges(self.estructura))
         aux = ()
         for i in iter:
-            aux = (i['vertexA'],i['vertexB'],i['weight'])
+            aux = (i['vertexA'], i['vertexB'], i['weight'])
             lst.append(aux)
-        return lst            
-    
+        return lst
+
     def getNodeValues(self):
         '''
         Devuelve los valores de todos los nodos del grafo
-                
+
         Args:
             -
-        
+
         Returns:
             Lista (python) de los valores de los nodos del grafo
 
         '''
+        
         lst = list()
-        iter = lt.iterator(g.vertices(self.estructura))
+        vertex = g.vertices(self.estructura)
+        iter = lt.iterator(vertex)
         for i in iter:
             lst.append(i)
         return lst
-
+        
     def isNodeValue(self, infoNodo):
         '''
         Informa si un nodo pertenece o no al grafo
-        
+
         Args:
             infoNodo: Valor del nodo que se busca
-        
+
         Returns:
             True si el nodo pertenece al grafo, False si no pertenece
-            
+
         '''
         infoNodo = str(infoNodo)
         return g.containsVertex(self.estructura, infoNodo)
@@ -138,13 +145,13 @@ class grafo:
     def findAdjacentNode(self, infoNodo):
         '''
         Devuelve los valores de los nodos que son adyacentes al nodo del valor dado
-        
+
         Args:
             infoNodo: Valor del nodo del que se buscan los adyacentes
-        
+
         Returns:
             Lista (python) con los valores de los nodos adyacentes al nodo dado. Si no tiene adyacentes se retorna una lista vacia
-            
+
         '''
         infoNodo = str(infoNodo)
         lst = list()
@@ -155,32 +162,32 @@ class grafo:
         except:
             pass
         return lst
-    
+
     def algorithms(self, algoritmo, infoNodo=None):
         '''
         Función que ejecuta un algoritmo dado en el grafo
-        
+
         Args:
             algoritmo: Nombre del algoritmo que se va a ejecutar: Bellman-Ford, BreadhtFirstSearch, DirectedCycle,  
             DepthFirstSearch, DepthFirstOrder, PrimMST, KosarajuSCC, Dijkstra
-        
+
         Returns:
             Dependiendo del algoritmo:
                 DepthFirstSearch, BreadhtFirstSearch, DepthFirstOrder': retornan una lista (python) de los valores de los nodos
-                
+
                 DirectedCycle: retorna una lista (python) con tuplas de arcos de la forma (nodo_origen, nodo_destino)
-                
+
                 Dijkstra, Bellman-Ford: retorna una lista de diccionarios (python) con keys: node, path, cost
                     - node: valor del nodo
                     - cost: costo de ir del nodo infoNodo a node
                     - path: lista (python) de tuplas de arcos de la forma (nodo_origen, nodo_destino) que indican el camino para ir de infoNodo a node
-                
+
                 KosarajuSCC: retorna un diccionario donde cada llave indica una componente fuertemente conectada, y cada valor es una lista (python) de los
                     valores de los nodos que pertenecen a dicha componente
-                
+
                 PrimMST: retorna una tupla (edges, weight) donde edges es una lista (python) de arcos en forma tuplas (nodo_origen, nodo_destino)
                         y weight es el costo total de los arcos mencionados
-        
+
         '''
         if infoNodo != None:
             infoNodo = str(infoNodo)
@@ -195,16 +202,19 @@ class grafo:
                     for j in iter:
                         path.append((j['vertexA'], j['vertexB']))
                 else:
-                    costo = 'inf'    
+                    costo = 'inf'
                 my_dict = {'node': i, 'cost': costo, 'path': path}
                 table.append(my_dict)
-                
+
         if algoritmo == 'BreadhtFirstSearch':
-            search = bfs.BreadhtFisrtSearch(self.estructura, infoNodo)
-            for i in self.getNodeValues():
-                if bfs.hasPathTo(search, i):
-                    table.append(i)
-                
+            if self.type == 'Undirected':
+                Gnx = nx.Graph()
+            else:
+                Gnx = nx.DiGraph()
+            Gnx.add_nodes_from(self.getNodeValues())
+            Gnx.add_weighted_edges_from(sorted(self.getEdgeValues()))
+            table = list(nx.bfs_tree(Gnx, infoNodo).nodes())
+
         if algoritmo == "DirectedCycle":
             search = c.DirectedCycle(self.estructura)
             if c.hasCycle(search):
@@ -212,19 +222,22 @@ class grafo:
                 while not stack.isEmpty(pathRta):
                     edge = stack.pop(pathRta)
                     table.append((edge['vertexA'], edge['vertexB']))
-        
+
         if algoritmo == 'DepthFirstSearch':
-            search = dfs.DepthFirstSearch(self.estructura, infoNodo)
-            for i in self.getNodeValues():
-                if dfs.hasPathTo(search, i):
-                    table.append(i)
-        
+            if self.type == 'Undirected':
+                Gnx = nx.Graph()
+            else:
+                Gnx = nx.DiGraph()
+            Gnx.add_nodes_from(self.getNodeValues())
+            Gnx.add_weighted_edges_from(sorted(self.getEdgeValues()))
+            table = list(nx.dfs_preorder_nodes(Gnx, infoNodo))
+
         if algoritmo == 'DepthFirstOrder':
             search = dfo.DepthFirstOrder(self.estructura)
             while not stack.isEmpty(search['reversepost']):
                 top = stack.pop(search['reversepost'])
                 table.append(top)
-                
+
         if algoritmo == 'PrimMST':
             search = prim.PrimMST(self.estructura, infoNodo)
             weight = prim.weightMST(self.estructura, search)
@@ -232,8 +245,21 @@ class grafo:
             while not q.isEmpty(path):
                 edge = q.dequeue(path)
                 table.append((edge['vertexA'], edge['vertexB']))
+            aux = list()
+            nodess = sorted(self.getNodeValues())
+            nodess.remove(infoNodo)
+            actual = infoNodo
+            while len(aux) < len(table):
+                for i, j in table:
+                    if i == actual and ((i, j) not in aux and (j, i) not in aux):
+                        aux.append((i, j))
+                    if j == actual and ((i, j) not in aux and (j, i) not in aux):
+                        aux.append((j, i))
+                actual = nodess.pop()
+            table = aux
+
             return table, weight
-        
+
         if algoritmo == 'KosarajuSCC':
             sc = scc.KosarajuSCC(self.estructura)
             elements = sc['idscc']['table']['elements']
@@ -246,7 +272,7 @@ class grafo:
                         table[i['value']] = lista
                     except:
                         table[i['value']] = [i['key']]
-        
+
         if algoritmo == 'Dijkstra':
             search = djk.Dijkstra(self.estructura, infoNodo)
             for i in self.getNodeValues():
@@ -260,5 +286,5 @@ class grafo:
                     aux['node'] = i
                     aux['path'] = pathList
                     aux['cost'] = djk.distTo(search, i)
-                    table.append(aux)            
+                    table.append(aux)
         return table

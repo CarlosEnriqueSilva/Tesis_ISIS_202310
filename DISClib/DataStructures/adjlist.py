@@ -45,7 +45,7 @@ def newGraph(size, cmpfunction, directed, type, datastructure):
 
     Args:
         size: Tamaño inicial del grafo
-        comparefunction: Funcion de comparacion
+        cmpfunction: Funcion de comparacion
         directed: Indica si el grafo es dirigido o no
     Returns:
         Un nuevo grafo vacío
@@ -56,18 +56,18 @@ def newGraph(size, cmpfunction, directed, type, datastructure):
         graph = {'vertices': None,
                  'edges': 0,
                  'type': type,
-                 'comparefunction': cmpfunction,
+                 'cmpfunction': cmpfunction,
                  'directed': directed,
                  'indegree': None,
                  'datastructure': datastructure
                  }
         graph['vertices'] = map.newMap(numelements=size,
                                        maptype='PROBING',
-                                       comparefunction=cmpfunction)
+                                       cmpfunction=cmpfunction)
         if (directed):
             graph['indegree'] = map.newMap(numelements=size,
                                            maptype='PROBING',
-                                           comparefunction=cmpfunction)
+                                           cmpfunction=cmpfunction)
         return graph
     except Exception as exp:
         error.reraise(exp, 'ajlist:newgraph')
@@ -113,6 +113,7 @@ def removeVertex(graph, vertex):
         return graph
     except Exception as exp:
         error.reraise(exp, 'ajlist:removeVertex')
+    # pass
 
 
 def numVertices(graph):
@@ -281,12 +282,12 @@ def getEdge(graph, vertexa, vertexb):
         for edge in lt.iterator(lst):
             if (graph['directed']):
                 if (e.either(edge) == vertexa and
-                   (e.other(edge, e.either(edge)) == vertexb)):
+                        (e.other(edge, e.either(edge)) == vertexb)):
                     return edge
             elif(e.either(edge) == vertexa or
                  (e.other(edge, e.either(edge)) == vertexa)):
                 if (e.either(edge) == vertexb or
-                   (e.other(edge, e.either(edge)) == vertexb)):
+                        (e.other(edge, e.either(edge)) == vertexb)):
                     return edge
         return None
     except Exception as exp:
