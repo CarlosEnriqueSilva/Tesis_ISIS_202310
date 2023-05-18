@@ -82,7 +82,6 @@ def newList(datastructure='SINGLE_LINKED',
     except Exception as exp:
         error.reraise(exp, 'TADList->newList: ')
 
-
 def addFirst(lst, element):
     """Agrega un elemento a la lista en la primera posicion.
 
@@ -105,7 +104,6 @@ def addFirst(lst, element):
     except Exception as exp:
         error.reraise(exp, 'TADList->addFirst: ')
 
-
 def addLast(lst, element):
     """ Agrega un elemento en la última posición de la lista.
 
@@ -124,7 +122,6 @@ def addLast(lst, element):
     except Exception as exp:
         error.reraise(exp, 'TADList->addLast: ')
 
-
 def isEmpty(lst):
     """ Indica si la lista está vacía
 
@@ -139,7 +136,6 @@ def isEmpty(lst):
     except Exception as exp:
         error.reraise(exp, 'TADList->isEmpty: ')
 
-
 def size(lst):
     """ Informa el número de elementos de la lista.
 
@@ -153,7 +149,6 @@ def size(lst):
         return lst['datastructure'].size(lst)
     except Exception as exp:
         error.reraise(exp, 'TADList->size: ')
-
 
 def firstElement(lst):
     """ Retorna el primer elemento de una lista no vacía.
@@ -170,7 +165,6 @@ def firstElement(lst):
     except Exception as exp:
         error.reraise(exp, 'TADList->firstElement: ')
 
-
 def lastElement(lst):
     """ Retorna el último elemento de una  lista no vacia.
         No se elimina el elemento.
@@ -185,7 +179,6 @@ def lastElement(lst):
         return lst['datastructure'].lastElement(lst)
     except Exception as exp:
         error.reraise(exp, 'TADList->LastElement: ')
-
 
 def getElement(lst, pos):
     """ Retorna el elemento en la posición pos de la lista.
@@ -207,7 +200,6 @@ def getElement(lst, pos):
     except Exception as exp:
         error.reraise(exp, 'List->getElement: ')
 
-
 def deleteElement(lst, pos):
     """ Elimina el elemento en la posición pos de la lista.
 
@@ -227,7 +219,6 @@ def deleteElement(lst, pos):
         lst['datastructure'].deleteElement(lst, pos)
     except Exception as exp:
         error.reraise(exp, 'TADList->deleteElement: ')
-
 
 def removeFirst(lst):
     """ Remueve el primer elemento de la lista.
@@ -249,7 +240,6 @@ def removeFirst(lst):
     except Exception as exp:
         error.reraise(exp, 'TADList->removeFirst: ')
 
-
 def removeLast(lst):
     """ Remueve el último elemento de la lista.
 
@@ -269,7 +259,6 @@ def removeLast(lst):
         return lst['datastructure'].removeLast(lst)
     except Exception as exp:
         error.reraise(exp, 'TADList->removeLast: ')
-
 
 def insertElement(lst, element, pos):
     """ Inserta el elemento element en la posición pos de la lista.
@@ -292,7 +281,6 @@ def insertElement(lst, element, pos):
     except Exception as exp:
         error.reraise(exp, 'TADList->insertElement: ')
 
-
 def isPresent(lst, element):
     """ Informa si el elemento element esta presente en la lista.
 
@@ -314,7 +302,6 @@ def isPresent(lst, element):
     except Exception as exp:
         error.reraise(exp, 'TADList->isPresent: ')
 
-
 def exchange(lst, pos1, pos2):
     """ Intercambia la informacion en las posiciones pos1 y pos2 de la lista.
 
@@ -330,7 +317,6 @@ def exchange(lst, pos1, pos2):
         lst['datastructure'].exchange(lst, pos1, pos2)
     except Exception as exp:
         error.reraise(exp, 'List->exchange: ')
-
 
 def changeInfo(lst, pos, element):
     """ Cambia la informacion contenida en el nodo de la lista
@@ -349,7 +335,6 @@ def changeInfo(lst, pos, element):
         lst['datastructure'].changeInfo(lst, pos, element)
     except Exception as exp:
         error.reraise(exp, 'List->changeInfo: ')
-
 
 def subList(lst, pos, numelem):
     """ Retorna una sublista de la lista lst.
@@ -371,7 +356,6 @@ def subList(lst, pos, numelem):
     except Exception as exp:
         error.reraise(exp, 'List->subList: ')
 
-
 def iterator(lst):
     """ Retorna un iterador para la lista.
     Args:
@@ -384,7 +368,6 @@ def iterator(lst):
         return lst['datastructure'].iterator(lst)
     except Exception as exp:
         error.reraise(exp, 'List->Iterator: ')
-
 
 """
 Selector dinamico de la estructua de datos solicitada

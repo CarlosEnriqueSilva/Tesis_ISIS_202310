@@ -41,7 +41,7 @@ def newMap(numelements=17,
            prime=109345121,
            maptype='CHAINING',
            loadfactor=0.5,
-           cmpfunction=None):
+           comparefunction=None):
     """Crea una tabla de simbolos (map) sin orden
 
     Args:
@@ -49,7 +49,7 @@ def newMap(numelements=17,
         prime: Número primo utilizado en la función MAD
         maptype: separate chaining ('CHAINING' ) o linear probing('PROBING')
         loadfactor: Factor de carga inicial de la tabla
-        cmpfunction: Funcion de comparación entre llaves
+        comparefunction: Funcion de comparación entre llaves
     Returns:
         Un nuevo map
     Raises:
@@ -59,7 +59,7 @@ def newMap(numelements=17,
     return ht.newMap(numelements,
                      prime,
                      loadfactor,
-                     cmpfunction,
+                     comparefunction,
                      ht)
 
 

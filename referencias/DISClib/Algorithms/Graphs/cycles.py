@@ -122,16 +122,16 @@ def initStructures(graph):
 
         search['edgeTo'] = map.newMap(numelements=g.numVertices(graph),
                                       maptype='PROBING',
-                                      cmpfunction=graph['cmpfunction']
+                                      comparefunction=graph['comparefunction']
                                       )
 
         search['marked'] = map.newMap(numelements=g.numVertices(graph),
                                       maptype='PROBING',
-                                      cmpfunction=graph['cmpfunction'])
+                                      comparefunction=graph['comparefunction'])
 
         search['onStack'] = map.newMap(numelements=g.numVertices(graph),
                                        maptype='PROBING',
-                                       cmpfunction=graph['cmpfunction']
+                                       comparefunction=graph['comparefunction']
                                        )
 
         search['cycle'] = st.newStack()

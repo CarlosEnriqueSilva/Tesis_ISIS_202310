@@ -169,16 +169,16 @@ def initSearch(graph):
 
         search['edgeTo'] = map.newMap(numelements=g.numVertices(graph),
                                       maptype='PROBING',
-                                      cmpfunction=graph['cmpfunction']
+                                      comparefunction=graph['comparefunction']
                                       )
 
         search['distTo'] = map.newMap(numelements=g.numVertices(graph),
                                       maptype='PROBING',
-                                      cmpfunction=graph['cmpfunction'])
+                                      comparefunction=graph['comparefunction'])
 
         search['marked'] = map.newMap(numelements=g.numVertices(graph),
                                       maptype='PROBING',
-                                      cmpfunction=graph['cmpfunction']
+                                      comparefunction=graph['comparefunction']
                                       )
 
         vertices = g.vertices(graph)
@@ -186,7 +186,7 @@ def initSearch(graph):
             map.put(search['distTo'], vert, math.inf)
             map.put(search['marked'], vert, False)
 
-        search['pq'] = pq.newIndexMinPQ(cmpfunction=graph['cmpfunction'])
+        search['pq'] = pq.newIndexMinPQ(cmpfunction=graph['comparefunction'])
         search['mst'] = q.newQueue()
 
         return search

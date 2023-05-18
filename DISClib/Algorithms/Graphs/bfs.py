@@ -54,7 +54,7 @@ def BreadhtFisrtSearch(graph, source):
                   }
         search['visited'] = map.newMap(numelements=g.numVertices(graph),
                                        maptype='PROBING',
-                                       cmpfunction=graph['cmpfunction']
+                                       comparefunction=graph['comparefunction']
                                        )
         map.put(search['visited'], source, {'marked': True,
                                             'edgeTo': None,

@@ -45,7 +45,7 @@ def newGraph(size, cmpfunction, directed, type, datastructure):
 
     Args:
         size: Tamaño inicial del grafo
-        cmpfunction: Funcion de comparacion
+        comparefunction: Funcion de comparacion
         directed: Indica si el grafo es dirigido o no
     Returns:
         Un nuevo grafo vacío
@@ -56,18 +56,18 @@ def newGraph(size, cmpfunction, directed, type, datastructure):
         graph = {'vertices': None,
                  'edges': 0,
                  'type': type,
-                 'cmpfunction': cmpfunction,
+                 'comparefunction': cmpfunction,
                  'directed': directed,
                  'indegree': None,
                  'datastructure': datastructure
                  }
         graph['vertices'] = map.newMap(numelements=size,
                                        maptype='PROBING',
-                                       cmpfunction=cmpfunction)
+                                       comparefunction=cmpfunction)
         if (directed):
             graph['indegree'] = map.newMap(numelements=size,
                                            maptype='PROBING',
-                                           cmpfunction=cmpfunction)
+                                           comparefunction=cmpfunction)
         return graph
     except Exception as exp:
         error.reraise(exp, 'ajlist:newgraph')
@@ -108,7 +108,11 @@ def removeVertex(graph, vertex):
         Exception
     """
     # TODO
-    pass
+    try:
+        map.remove(graph['vertices'], vertex)
+        return graph
+    except Exception as exp:
+        error.reraise(exp, 'ajlist:removeVertex')
 
 
 def numVertices(graph):

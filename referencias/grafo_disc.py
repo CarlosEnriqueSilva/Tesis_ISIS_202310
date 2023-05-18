@@ -120,14 +120,14 @@ class grafo:
             Lista (python) de los valores de los nodos del grafo
 
         '''
-        
+
         lst = list()
         vertex = g.vertices(self.estructura)
         iter = lt.iterator(vertex)
         for i in iter:
             lst.append(i)
         return lst
-        
+
     def isNodeValue(self, infoNodo):
         '''
         Informa si un nodo pertenece o no al grafo
@@ -214,6 +214,9 @@ class grafo:
             Gnx.add_nodes_from(self.getNodeValues())
             Gnx.add_weighted_edges_from(sorted(self.getEdgeValues()))
             table = list(nx.bfs_tree(Gnx, infoNodo).nodes())
+            egdesss = list(nx.bfs_edges(Gnx, infoNodo))
+            tuplesss = (egdesss, sorted(table))
+            return tuplesss
 
         if algoritmo == "DirectedCycle":
             search = c.DirectedCycle(self.estructura)
@@ -231,6 +234,10 @@ class grafo:
             Gnx.add_nodes_from(self.getNodeValues())
             Gnx.add_weighted_edges_from(sorted(self.getEdgeValues()))
             table = list(nx.dfs_preorder_nodes(Gnx, infoNodo))
+            egdesss = list(nx.dfs_edges(
+                Gnx, infoNodo))
+            tuplesss = (egdesss, sorted(table))
+            return tuplesss
 
         if algoritmo == 'DepthFirstOrder':
             search = dfo.DepthFirstOrder(self.estructura)

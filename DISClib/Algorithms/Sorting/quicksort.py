@@ -36,7 +36,7 @@ assert cf
 """
 
 
-def partition(lst, lo, hi, sort_crit):
+def partition(lst, lo, hi, cmpfunction):
     """
     Función que va dejando el pivot en su lugar, mientras mueve
     elementos menores a la izquierda del pivot y elementos mayores a
@@ -44,7 +44,7 @@ def partition(lst, lo, hi, sort_crit):
     """
     follower = leader = lo
     while leader < hi:
-        if sort_crit(
+        if cmpfunction(
            lt.getElement(lst, leader), lt.getElement(lst, hi)):
             lt.exchange(lst, follower, leader)
             follower += 1
@@ -53,7 +53,7 @@ def partition(lst, lo, hi, sort_crit):
     return follower
 
 
-def quicksort(lst, lo, hi, sort_crit):
+def quicksort(lst, lo, hi, cmpfunction):
     """
     Se localiza el pivot, utilizando la funcion de particion.
     Luego se hace la recursión con los elementos a la izquierda del pivot
@@ -61,11 +61,11 @@ def quicksort(lst, lo, hi, sort_crit):
     """
     if (lo >= hi):
         return
-    pivot = partition(lst, lo, hi, sort_crit)
-    quicksort(lst, lo, pivot-1, sort_crit)
-    quicksort(lst, pivot+1, hi, sort_crit)
+    pivot = partition(lst, lo, hi, cmpfunction)
+    quicksort(lst, lo, pivot-1, cmpfunction)
+    quicksort(lst, pivot+1, hi, cmpfunction)
 
 
-def sort(lst, sort_crit):
-    quicksort(lst, 1, lt.size(lst), sort_crit)
+def sort(lst, cmpfunction):
+    quicksort(lst, 1, lt.size(lst), cmpfunction)
     return lst

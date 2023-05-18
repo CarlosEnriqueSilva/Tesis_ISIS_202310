@@ -225,21 +225,21 @@ def initSearch(graph, source):
 
         search['edgeTo'] = map.newMap(numelements=g.numVertices(graph),
                                       maptype='PROBING',
-                                      cmpfunction=graph['cmpfunction']
+                                      comparefunction=graph['comparefunction']
                                       )
 
         search['distTo'] = map.newMap(numelements=g.numVertices(graph),
                                       maptype='PROBING',
-                                      cmpfunction=graph['cmpfunction'])
+                                      comparefunction=graph['comparefunction'])
 
         search['onQ'] = map.newMap(numelements=g.numVertices(graph),
                                    maptype='PROBING',
-                                   cmpfunction=graph['cmpfunction']
+                                   comparefunction=graph['comparefunction']
                                    )
 
         search['spt'] = g.newGraph(size=g.numVertices(graph),
                                    directed=True,
-                                   cmpfunction=graph['cmpfunction']
+                                   comparefunction=graph['comparefunction']
                                    )
 
         vertices = g.vertices(graph)
