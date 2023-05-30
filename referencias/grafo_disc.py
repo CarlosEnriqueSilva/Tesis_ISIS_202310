@@ -11,7 +11,6 @@ from DISClib.Algorithms.Graphs import prim
 from DISClib.Algorithms.Graphs import scc
 from DISClib.Algorithms.Graphs import dijsktra as djk
 from DISClib.ADT import queue as q
-import networkx as nx
 
 
 class grafo:
@@ -207,15 +206,20 @@ class grafo:
                 table.append(my_dict)
 
         if algoritmo == 'BreadhtFirstSearch':
-            if self.type == 'Undirected':
-                Gnx = nx.Graph()
-            else:
-                Gnx = nx.DiGraph()
-            Gnx.add_nodes_from(self.getNodeValues())
-            Gnx.add_weighted_edges_from(sorted(self.getEdgeValues()))
-            table = list(nx.bfs_tree(Gnx, infoNodo).nodes())
-            egdesss = list(nx.bfs_edges(Gnx, infoNodo))
-            tuplesss = (egdesss, sorted(table))
+            search = bfs.BreadhtFisrtSearch(self.estructura, infoNodo)
+            pathss = list()
+            for i in self.getNodeValues():
+                if bfs.hasPathTo(search, i):
+                    table.append(i)
+                    pathss.append((bfs.pathTo(search, i)))
+            edges = []
+            for i in pathss:
+                x = i['first']
+                while x['next'] is not None:
+                    edges.append((x['info'], x['next']['info']))
+                    edges.append((x['next']['info'], x['info']))
+                    x = x['next']
+            tuplesss = (edges, sorted(table))
             return tuplesss
 
         if algoritmo == "DirectedCycle":
@@ -227,16 +231,20 @@ class grafo:
                     table.append((edge['vertexA'], edge['vertexB']))
 
         if algoritmo == 'DepthFirstSearch':
-            if self.type == 'Undirected':
-                Gnx = nx.Graph()
-            else:
-                Gnx = nx.DiGraph()
-            Gnx.add_nodes_from(self.getNodeValues())
-            Gnx.add_weighted_edges_from(sorted(self.getEdgeValues()))
-            table = list(nx.dfs_preorder_nodes(Gnx, infoNodo))
-            egdesss = list(nx.dfs_edges(
-                Gnx, infoNodo))
-            tuplesss = (egdesss, sorted(table))
+            search = dfs.DepthFirstSearch(self.estructura, infoNodo)
+            pathss = list()
+            for i in self.getNodeValues():
+                if dfs.hasPathTo(search, i):
+                    table.append(i)
+                    pathss.append(dfs.pathTo(search, i))
+            edges = []
+            for i in pathss:
+                x = i['first']
+                while x['next'] is not None:
+                    edges.append((x['info'], x['next']['info']))
+                    edges.append((x['next']['info'], x['info']))
+                    x = x['next']
+            tuplesss = (edges, sorted(table))
             return tuplesss
 
         if algoritmo == 'DepthFirstOrder':
