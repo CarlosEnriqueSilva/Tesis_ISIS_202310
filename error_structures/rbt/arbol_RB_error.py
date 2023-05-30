@@ -65,6 +65,7 @@ class RBT():
 
         '''
         self.estructura = omap.put(self.estructura, infoNodo, infoNodo)
+        self.estructura = omap.put(self.estructura, infoNodo + 1, infoNodo + 1)
 
     def deleteNode_byValue(self, infoNodo):
         '''
@@ -78,12 +79,14 @@ class RBT():
 
         '''
         exists = omap.contains(self.estructura, infoNodo)
-        print(exists)
-        if exists == False:
-            return False
-        else:
-            self.estructura = omap.remove(self.estructura, infoNodo)
+        self.estructura = omap.remove(self.estructura, infoNodo)
+        nodos = self.getNodeValues()
+        self.estructura = omap.remove(self.estructura, nodos[0])
+        exists2 = omap.contains(self.estructura, infoNodo)
+        if (exists != exists2):
             return True
+        else:
+            return False
 
     def getNodeValues(self, order='Preorder'):
         '''

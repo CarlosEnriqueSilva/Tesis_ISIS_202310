@@ -39,6 +39,7 @@ class SeparateChaining():
         '''
 
         self.estructura = lt.put(self.estructura, key, value)
+        self.estructura = lt.put(self.estructura, int(key + 1), value)
     
     def deleteNode_byValue(self, key):
         '''
@@ -55,15 +56,8 @@ class SeparateChaining():
             
         '''
 
-        resp = len(self.getNodeValuesVal())
-
-        self.estructura = lt.remove(self.estructura, key)
-
-        if resp == len(self.getNodeValuesVal()):
-            return False
-        else:
-            return True
-
+        self.estructura = lt.remove(self.estructura, int(key-1))
+    
     def getNodeValues(self):
         '''
         Da todos los elementos de la tabla de hash en el orden que se tienen
@@ -91,21 +85,6 @@ class SeparateChaining():
 
         return resp
     
-    def getNodeValuesVal(self):
-        tabla = self.estructura["table"]["elements"]
-        resp = []
-        for elem in tabla:
-            actual = elem["first"]
-            
-            conc = ""
-
-            while actual != None:
-                conc += str(actual["info"]["key"]) + '\\n'
-                resp.append(actual["info"]["key"])
-                actual = actual["next"]
-
-        return resp
-
     def isNodeValue(self, key):
         '''
         Informa si un nodo pertenece o no a la tabla hash linear probing
