@@ -22,7 +22,7 @@ class bst():
         '''
 
         self.estructura = omap.newMap(
-            omaptype='BST', cmpfunction=defaultfunction)
+            omaptype='BST', comparefunction=defaultfunction)
 
     def addNode_byValue(self, infoNodo):
         '''
