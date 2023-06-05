@@ -49,8 +49,7 @@ class RBT():
             -
 
         '''
-        self.estructura = omap.newMap(
-            omaptype='RBT', comparefunction=defaultfunction)
+        self.estructura = omap.newMap(omaptype='RBT', comparefunction=defaultfunction)
 
     def addNode_byValue(self, infoNodo):
         '''
@@ -97,14 +96,18 @@ class RBT():
 
         '''
         #print('Archivo Ref')
+
         lst = list()
         try:
             if not omap.isEmpty(self.estructura):
                 if order == 'Inorder':
+                    
                     iter = lt.iterator(tr.inorder(self.estructura))
                 elif order == 'Preorder':
+                    
                     iter = lt.iterator(tr.preorder(self.estructura))
                 elif order == 'Postorder':
+                    
                     iter = lt.iterator(tr.postorder(self.estructura))
                 for i in iter:
                     lst.append(i)

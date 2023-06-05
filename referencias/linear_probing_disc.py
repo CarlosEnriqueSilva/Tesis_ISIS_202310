@@ -133,7 +133,7 @@ class LinearProbing():
        # print(tabla)
         resp = []
         for elem in tabla:
-            if elem["key"] != "None" and elem["key"] != "__EMPTY__":
+            if elem["key"] != "None" and elem["key"] != None and elem["key"] != "__EMPTY__":
                 resp.append(elem["key"])
 
         return resp
