@@ -17,50 +17,50 @@ class Arreglo():
         self.estructura = []
         self.type = 5
 
-    def addNode_byValue(self, infoNodo):
+    def addNode_byValue(self, infoElemento):
         '''
-        Añade un nodo al arreglo, el nodo se añade al final de la lista.
-        Si el nodo ya se encuentra en la lista, se añade una nueva instancia
+        Añade un elemento al arreglo, el elemento se añade al final de la lista.
+        Si el elemento ya se encuentra en la lista, se añade una nueva instancia
 
         Args:
-            infoNodo: Información del nodo para añadir a la lista
+            infoElemento: Información del elemento para añadir a la lista
 
         Returns:
             -
 
         '''
-        self.estructura.append(infoNodo)
+        self.estructura.append(infoElemento)
 
-    def addNode_byValueFirst(self, infoNodo):
+    def addNode_byValueFirst(self, infoElemento):
         '''
-        Añade un nodo al arreglo, el nodo se añade al final de la lista.
-        Si el nodo ya se encuentra en la lista, se añade una nueva instancia
+        Añade un elemento al arreglo, el elemento se añade al final de la lista.
+        Si el elemento ya se encuentra en la lista, se añade una nueva instancia
 
         Args:
-            infoNodo: Información del nodo para añadir a la lista
+            infoElemento: Información del elemento para añadir a la lista
 
         Returns:
             -
 
         '''
-        self.estructura.insert(0, infoNodo)
+        self.estructura.insert(0, infoElemento)
 
-    def deleteNode_byValue(self, infoNodo):
+    def deleteNode_byValue(self, infoElemento):
         '''
-        Elimina un nodo al arreglo.
-            Si el nodo no existe se retorna False
+        Elimina un elemento al arreglo.
+            Si el elemento no existe se retorna False
 
-            Si hay mas de un nodo con el valor indicado, solo se elimina una instancia.
+            Si hay mas de un elemento con el valor indicado, solo se elimina una instancia.
 
         Args:
-            infoNodo: Información del nodo que se va a eliminar
+            infoElemento: Información del elemento que se va a eliminar
 
         Returns:
-            False si el nodo no pertenece a la lista, True si el nodo se elimina de la lista
+            False si el elemento no pertenece a la lista, True si el elemento se elimina de la lista
 
         '''
         for i in range(len(self.estructura)):
-            if self.estructura[i] == infoNodo:
+            if self.estructura[i] == infoElemento:
                 del self.estructura[i]
                 return True
 
@@ -74,7 +74,7 @@ class Arreglo():
             -
 
         Returns:
-            Lista (python) con todos los valores de los nodos, en el orden del primero al ultimo
+            Lista (python) con todos los valores de los elementos, en el orden del primero al ultimo
 
         '''
         lst = []
@@ -82,38 +82,38 @@ class Arreglo():
             lst.append(i)
         return lst
 
-    def isNodeValue(self, infoNodo):
+    def isNodeValue(self, infoElemento):
         '''
-        Informa si un nodo pertenece o no al arreglo
+        Informa si un elemento pertenece o no al arreglo
 
         Args:
-            infoNodo: Valor del nodo que se busca
+            infoElemento: Valor del elemento que se busca
 
         Returns:
-            True si el nodo pertenece a la lista enlazada, False si no pertenece
+            True si el elemento pertenece a la lista enlazada, False si no pertenece
 
         '''
         for elem in self.estructura:
-            if elem == infoNodo:
+            if elem == infoElemento:
                 return True
 
         return False
     
-    def findAdjacentNode(self, infoNodo):
+    def findAdjacentNode(self, infoElemento):
         '''
-        Devuelve los valores de los nodos que son adyacentes a un nodo dado.
+        Devuelve los valores de los elementos que son adyacentes a un elemento dado.
         
         Args:
-            infoNodo: Información del nodo del que se buscan los adyacentes
+            infoElemento: Información del elemento del que se buscan los adyacentes
         
         Returns:
-            Lista (python) con los valores de los nodos adyacentes al nodo dado. Si no tiene adyacentes se retorna una lista vacia
+            Lista (python) con los valores de los elementos adyacentes al elemento dado. Si no tiene adyacentes se retorna una lista vacia
             
         '''
         lst = list()
 
         for i in range(len(self.estructura)):
-            if self.estructura[i] == infoNodo:
+            if self.estructura[i] == infoElemento:
                 if i != 0:
                     lst.append(self.estructura[i-1])
                 if i != len(self.estructura)-1:

@@ -185,6 +185,7 @@ def remove(map, key):
             entry = me.newMapEntry('__EMPTY__', '__EMPTY__')
             lt.changeInfo(map['table'], pos, entry)
             map['size'] -= 1
+            map['currentfactor'] = map['size'] / map['capacity']
         return map
     except Exception as exp:
         error.reraise(exp, 'Probe:remove')
