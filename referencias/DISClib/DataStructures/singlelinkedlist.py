@@ -396,10 +396,10 @@ def isPresent(lst, element):
                         keyexist = True
                         break
                     node = node['next']
-            
+
             if keyexist:
                 return keypos
-            
+
         return 0
     except Exception as exp:
         error.reraise(exp, 'singlelinkedlist->isPresent: ')

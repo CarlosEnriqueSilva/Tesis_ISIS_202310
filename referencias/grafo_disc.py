@@ -88,7 +88,6 @@ class grafo:
         '''
         infoNodo = str(infoNodo)
         self.estructura = g.removeVertex(self.estructura, infoNodo)
-
         oldEdges = self.getEdgeValues()
         oldNodes = self.getNodeValues()
 
@@ -206,9 +205,7 @@ class grafo:
             infoNodo = str(infoNodo)
         table = list()
         if algoritmo == 'Bellman-Ford':
-            print('Entrobellmanford')
             search = bf.BellmanFord(self.estructura, infoNodo)
-            print('Hizo search')
             for i in self.getNodeValues():
                 costo = bf.distTo(search, i)
                 path = list()

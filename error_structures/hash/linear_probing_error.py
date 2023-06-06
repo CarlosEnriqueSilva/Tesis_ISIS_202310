@@ -124,4 +124,4 @@ class LinearProbing():
         return False
         '''
 
-        return lt.contains(self.estructura, key)
+        return True  # lt.contains(self.estructura, key)
