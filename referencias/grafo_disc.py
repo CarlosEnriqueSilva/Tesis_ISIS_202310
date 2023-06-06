@@ -89,6 +89,20 @@ class grafo:
         infoNodo = str(infoNodo)
         self.estructura = g.removeVertex(self.estructura, infoNodo)
 
+        oldEdges = self.getEdgeValues()
+        oldNodes = self.getNodeValues()
+
+        if self.type == 'Directed':
+            self.estructura = g.newGraph(size=10, directed=True)
+        else:
+            self.estructura = g.newGraph(size=10)
+
+        for i in oldNodes:
+            self.addNode_byValue(i)
+        for o, e, w in oldEdges:
+            if o != infoNodo and e != infoNodo:
+                self.addEdge_byValue(o, e, w)
+
     def getEdgeValues(self):
         '''
         Devuelve los valores de todos los arcos del grafo
@@ -192,7 +206,9 @@ class grafo:
             infoNodo = str(infoNodo)
         table = list()
         if algoritmo == 'Bellman-Ford':
+            print('Entrobellmanford')
             search = bf.BellmanFord(self.estructura, infoNodo)
+            print('Hizo search')
             for i in self.getNodeValues():
                 costo = bf.distTo(search, i)
                 path = list()
@@ -249,12 +265,22 @@ class grafo:
 
         if algoritmo == 'DepthFirstOrder':
             search = dfo.DepthFirstOrder(self.estructura)
+            table.append('Pre')
+            while not stack.isEmpty(search['pre']):
+                top = stack.pop(search['pre'])
+                table.append(top)
+            table.append('Post')
+            while not stack.isEmpty(search['post']):
+                top = stack.pop(search['post'])
+                table.append(top)
+            table.append('Reverse')
             while not stack.isEmpty(search['reversepost']):
                 top = stack.pop(search['reversepost'])
                 table.append(top)
 
         if algoritmo == 'PrimMST':
-            search = prim.PrimMST(self.estructura, infoNodo)
+            search = prim.initSearch(self.estructura)
+            search = prim.prim(self.estructura, search, infoNodo)
             weight = prim.weightMST(self.estructura, search)
             path = search['mst']
             while not q.isEmpty(path):
