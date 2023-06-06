@@ -1,5 +1,5 @@
 """
- * Copyright 2020, Departamento de sistemas y ComputaciÃ³n
+ * Copyright 2020, Departamento de sistemas y Computación
  * Universidad de Los Andes
  *
  *
@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * ContribuciÃ³n de:
+ * Contribución de:
  *
  * Dario Correal
  *
@@ -35,12 +35,12 @@ from DISClib.Utils import error as error
 assert config
 
 """
-ImplementaciÃ³n de una tabla de hash, utilizando Separate Chaining como
-mecanismo de manejo de colisiones.  Esta implementaciÃ³n crea una lista
-de tamaÃ±o capacity.  En cada posiciÃ³n de la lista, se crea una lista
+Implementación de una tabla de hash, utilizando Separate Chaining como
+mecanismo de manejo de colisiones.  Esta implementación crea una lista
+de tamaño capacity.  En cada posición de la lista, se crea una lista
 vacia.
 
-Este cÃ³digo estÃ¡ basado en las implementaciones propuestas en:
+Este código está basado en las implementaciones propuestas en:
 - Algorithms, 4th Edition.  R. Sedgewick
 - Data Structures and Algorithms in Java, 6th Edition.  Michael Goodrich
 """
@@ -51,14 +51,14 @@ def newMap(numelements, prime, loadfactor, comparefunction, datastructure):
 
     Crea una tabla de hash con capacidad igual a nuelements
     (primo mas cercano al doble de numelements).
-    prime es un nÃºmero primo utilizado para  el cÃ¡lculo de los codigos
+    prime es un número primo utilizado para  el cálculo de los codigos
     de hash, si no es provisto se  utiliza el primo 109345121.
 
     Args:
-        numelements: TamaÃ±o inicial de la tabla
-        prime: NÃºmero primo utilizado en la funciÃ³n MAD
+        numelements: Tamaño inicial de la tabla
+        prime: Número primo utilizado en la función MAD
         loadfactor: Factor de carga inicial de la tabla
-        cmpfunc: Funcion de comparaciÃ³n entre llaves
+        cmpfunc: Funcion de comparación entre llaves
     Returns:
         Un nuevo map
     Raises:
@@ -66,8 +66,8 @@ def newMap(numelements, prime, loadfactor, comparefunction, datastructure):
     """
     try:
         capacity = nextPrime(numelements//loadfactor)
-        scale = 84633
-        shift = 4735995
+        scale = rd.randint(1, prime-1)
+        shift = rd.randint(0, prime-1)
         hashtable = {'prime': prime,
                      'capacity': capacity,
                      'scale': scale,
@@ -145,6 +145,7 @@ def put(map, key, value):
 
         if (map['currentfactor'] >= map['limitfactor']):
             rehash(map)
+
         return map
     except Exception as exp:
         error.reraise(exp, 'Chain:put')
@@ -198,11 +199,11 @@ def remove(map, key):
 
 
 def size(map):
-    """  Retorna  el nÃºmero de entradas en la tabla de hash.
+    """  Retorna  el número de entradas en la tabla de hash.
     Args:
         map: El map
     Returns:
-        TamaÃ±o del map
+        Tamaño del map
     Raises:
         Exception
     """
@@ -315,10 +316,10 @@ def rehash(map):
 
 def hashValue(table, key):
     """
-    Calcula un hash para una llave, utilizando el mÃ©todo
+    Calcula un hash para una llave, utilizando el método
     MAD : hashValue(y) = ((ay + b) % p) % M.
     Donde:
-    M es el tamaÃ±o de la tabla, primo
+    M es el tamaño de la tabla, primo
     p es un primo mayor a M,
     a y b enteros aleatoreos dentro del intervalo [0,p-1], con a>0
     """
