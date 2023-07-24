@@ -16,7 +16,7 @@ class listaEnlazada():
             -
             
         '''
-        self.type = type
+        self.type =1
         if type == 1: 
             self.estructura = lt.newList(datastructure='SINGLE_LINKED', cmpfunction=defaultfunction)
         elif type == 2:
