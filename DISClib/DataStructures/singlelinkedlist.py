@@ -378,6 +378,7 @@ def isPresent(lst, element):
     de la lista para comparar los elementos.
     La cual debe retornar cero en caso de que los elementos sean iguales.
 
+    
     Args:
         lst: La lista a examinar
         element: El elemento a buscar
@@ -392,7 +393,7 @@ def isPresent(lst, element):
             keyexist = False
             for keypos in range(1, size+1):
                 if (node is not None):
-                    if (compareElements(lst, element, node['info']) != 0):
+                    if (compareElements(lst, element, node['info']) == 0):
                         keyexist = True
                         break
                     node = node['next']

@@ -140,6 +140,7 @@ class RBT():
             Lista (python) con los valores de los nodos adyacentes al nodo dado. Si no tiene adyacentes se retorna una lista vacia
 
         '''
+
         node = omap.get(self.estructura, infoNodo)
         lst = list()
         if node != None:

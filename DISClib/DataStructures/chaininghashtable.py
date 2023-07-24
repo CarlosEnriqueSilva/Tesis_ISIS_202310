@@ -34,6 +34,7 @@ from DISClib.ADT import list as lt
 from DISClib.Utils import error as error
 assert config
 
+
 """
 Implementación de una tabla de hash, utilizando Separate Chaining como
 mecanismo de manejo de colisiones.  Esta implementación crea una lista
@@ -66,8 +67,8 @@ def newMap(numelements, prime, loadfactor, comparefunction, datastructure):
     """
     try:
         capacity = nextPrime(numelements//loadfactor)
-        scale = rd.randint(1, prime-1)
-        shift = rd.randint(0, prime-1)
+        scale = 84633
+        shift = 4735995
         hashtable = {'prime': prime,
                      'capacity': capacity,
                      'scale': scale,

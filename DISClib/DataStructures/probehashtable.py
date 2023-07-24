@@ -64,8 +64,8 @@ def newMap(numelements, prime, loadfactor, comparefunction, datastructure):
     """
     try:
         capacity = nextPrime(numelements//loadfactor)
-        scale = rd.randint(1, prime-1)
-        shift = rd.randint(0, prime-1)
+        scale = 84633
+        shift = 4735995
         hashtable = {'prime': prime,
                      'capacity': capacity,
                      'scale': scale,
